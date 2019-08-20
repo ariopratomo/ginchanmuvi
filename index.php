@@ -36,21 +36,18 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <tbody>
 
                     <tr>
-                        <td style="text-align:right; padding: 1px;"><a href="mailto:yutubku456@gmail.com"
-                                target="_blank"><img src="<?php echo get_template_directory_uri();?>/img/iklan.gif"
-                                    alt="Pasang Iklan" title="Pasang Iklan"></a>
-                        </td>
-                        <td style="text-align:right; padding: 1px;"><a href="mailto:yutubku456@gmail.com"
-                                target="_blank"><img src="<?php echo get_template_directory_uri();?>/img/iklan.gif"
-                                    alt="Pasang Iklan" title="Pasang Iklan"></a>
-                        </td>
+                        <th style="text-align:center; padding: 1px; ">
+                            <?= get_option('ads_1'); ?>
+                        </th>
+
                     </tr>
                 </tbody>
             </table>
-            <div class="ann">anu</div>
-            <div class="latest">
+
+            <div class="ann"><?php echo get_option('config_infoweb'); ?></div>
+            <div class="latest  ">
                 <h2><i class="fa fa-film"></i> Latest Movies</h2>
-                <div class="los">
+                <div class="los bg-white p-2 rounded shadow-sm">
                     <?php if ( have_posts() ) : ?>
 
                     <?php while ( have_posts() ) : the_post(); ?>

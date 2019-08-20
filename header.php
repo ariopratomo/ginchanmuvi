@@ -19,6 +19,11 @@ $container = get_theme_mod( 'understrap_container_type' );
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://vjs.zencdn.net/7.5.4/video-js.css" rel="stylesheet">
+
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <style type="text/css">
     .navbar-brand.mb-0.font-weight-bold a {
@@ -45,6 +50,50 @@ $container = get_theme_mod( 'understrap_container_type' );
         text-align: center;
         line-height: 21px;
     }
+
+    .gm-ul {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100%;
+        padding-right:15px;
+        font-size:13px;
+    }
+
+    #site-genre {
+        background: #ff1744;
+        margin: 0;
+        padding:3px 10px;
+    }
+
+    .gm-ul li {
+        padding: 0 7px;
+        margin: 5px 0;
+        margin-right: 4px;
+        border-radius: 3px;
+    }
+.stream-pager ul li{
+color:#fff;
+
+}
+    
+
+    .genfirst {
+        background: #fff;
+    }
+
+    .gm-ul li a {
+       
+        color: #fff;
+    }
+    .gm-ul li a:hover {
+       text-decoration:underline;
+       color: #ffc107;
+   }
 
     .latest {
         margin-bottom: 20px
@@ -88,6 +137,254 @@ $container = get_theme_mod( 'understrap_container_type' );
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
 
+    }
+
+    /* Stream Mode */
+    .stream-pager ul {
+        list-style: none
+    }
+
+    .stream-pager li {
+        display: inline-block;
+        margin-right: 5px
+    }
+
+    .stream-pager li a {
+        display: block;
+        padding: 2px 11px 3px;
+        border-radius: 3px;
+        color: #fff;
+        border: 1px solid #d0cbcb;
+        font-weight: 700;
+        letter-spacing: .3px;
+        background: #008cff;
+    }
+
+    .stream-pager li a:hover,
+    .stream-pager li a.active {
+        background: #c4001d;
+        border-color: transparent;
+        color: #fff
+    }
+
+    .stream-pager {
+        margin: 0 auto 5px
+    }
+
+    .stream-pager-title b {
+        display: block;
+        line-height: 27px
+    }
+
+    .stream-server {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden
+    }
+
+    .stream-server iframe {
+
+        border: 0;
+        outline: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        background: #3498db url(https://www.pam-techno.co.id/home/img/asset/ajax-loader.gif) no-repeat center
+    }
+
+    .bread_crumb {
+        margin: 0;
+        border-bottom: 1px solid #eee;
+        clear: both;
+        height: 20px;
+        background: #f8f8f8;
+    }
+
+    .bread_crumb li {
+        font-size: 12px;
+        color: rgb(180, 180, 180);
+        float: left;
+        /*margin-right:1em;*/
+        list-style: none outside none;
+    }
+
+    .bread_crumb li:after {
+        content: '>';
+        padding-left: 10px;
+        margin-right: 10px;
+    }
+
+    .bread_crumb li:last-child:after {
+        content: '';
+    }
+
+    .bread_crumb li a {
+        color: rgb(120, 120, 120);
+    }
+
+    .bread_crumb li.current {}
+
+    .stream-combine {
+        margin-bottom: 10px
+    }
+
+    .stream-pagi {
+        background: #4f5358;
+        background: #35383c
+    }
+
+    .stream-pagi a {
+        display: inline-block;
+        color: #fff
+    }
+
+    .stream-pagi span {
+        display: inline-block;
+        width: 33.3%;
+        padding: 8px 11px 10px
+    }
+
+    .stream-pagi span:hover a {
+        color: #5dbdea
+    }
+
+    .stream-pagi i {
+        font-weight: 700
+    }
+
+    .stream-pagi .pagi-toc {
+        text-align: center
+    }
+
+    .stream-pagi .pagi-toc i {
+        padding-right: 4px;
+        font-weight: 400
+    }
+
+    .stream-pagi .pagi-next {
+        text-align: right
+    }
+
+
+
+    .stream-submenu ul {
+        list-style: none;
+        margin-right: -1px
+    }
+
+    .stream-submenu li {
+        float: left;
+        padding: 0 12px;
+        line-height: 35px;
+        text-align: center;
+        background: #2a2c2f;
+        width: 33.3%
+    }
+
+    .stream-submenu li a {
+        color: #fff;
+        display: block;
+    }
+
+    .stream-submenu li a i,
+    .stream-submenu li i {
+        padding-right: 3px
+    }
+
+    .stream-submenu-select {
+        padding: 0 !important
+    }
+
+    .stream-submenu-report {
+        float: left;
+        width: 50%
+    }
+
+    .stream-submenu-report:hover {
+        background: #DC3545
+    }
+
+    .stream-submenu-focus {
+        float: left;
+        color: #fff !important;
+        font-weight: 700;
+        cursor: pointer;
+        width: 50%
+    }
+
+    .stream-submenu-focus:hover {
+        background: #e0a12f
+    }
+
+    .stream-submenu-download {
+        background: #57afd8 !important
+    }
+
+    .stream-submenu-credit {
+        white-space: nowrap;
+        color: #fff
+    }
+
+    .stream-submenu-credit .fa {
+        position: relative;
+        top: 0
+    }
+
+    #reports p {
+        color: #721c24;
+        background-color: #fde2e4;
+        border: 1px solid #d6a3a9;
+        padding: 10px 15px;
+        margin: 0 0 5px;
+        border-radius: 3px;
+        font-size: 13px
+    }
+
+    .bawahnyaplayer {
+        position: relative;
+        color: #ddd;
+        background: #1d1d1d;
+    }
+
+    .bawahside {
+        height: 19px;
+        padding: 9px 0 7px;
+        float: left;
+        text-align: center;
+        background: #1d1d1d;
+        width: 30%;
+        font-size: 13px;
+        position: relative;
+    }
+
+    .bawahmid {
+        height: 19px;
+        padding: 9px 0 7px;
+        float: left;
+        text-align: center;
+        background: #1a77d0;
+        width: 40%;
+        font-size: 14px;
+        text-transform: uppercase;
+        transition: all .2s;
+        -webkit-transition: all .2s;
+        -moz-transition: all .2s;
+    }
+
+    .bawahside {
+        height: 19px;
+        padding: 9px 0 7px;
+        float: left;
+        text-align: center;
+        background: #1d1d1d;
+        width: 30%;
+        font-size: 13px;
+        position: relative;
     }
 
     .latest .more a {
@@ -627,8 +924,66 @@ $container = get_theme_mod( 'understrap_container_type' );
         text-align: center;
         color: #fff;
     }
+
+
+    .video {
+        position: relative;
+        padding-bottom: 56.25%;
+        /* 16:9 */
+        height: 0;
+    }
+
+    .video img {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 20;
+        cursor: pointer;
+    }
+
+    .video:after {
+        content: "";
+        position: absolute;
+        display: block;
+        background: url(play-button.png) no-repeat 0 0;
+        top: 45%;
+        left: 45%;
+        width: 46px;
+        height: 36px;
+        z-index: 30;
+        cursor: pointer;
+    }
+
+    .video iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* image poster clicked, player class added using js */
+    .video.player img {
+        display: none;
+    }
+
+    .video.player:after {
+        display: none;
+    }
     </style>
     <?php wp_head(); ?>
+    <?php if (is_singular()){ ?><script type="text/javascript">
+    /* Turnoflights */
+    $(function() {
+        $('.stream-server iframe').allofthelights({
+            'opacity': '0.9'
+        })
+    });
+    </script><?php } ?>
+    <!-- Safelinku.com Full Page Script Exclude-->
 
 </head>
 
@@ -692,19 +1047,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 					)
 				); ?>
 
-                    <form method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="search"
-                        style="margin-top: 2px">
-                        <label class="sr-only" for="s"><?php esc_html_e( 'Search', 'understrap' ); ?></label>
-                        <div class="input-group">
-                            <input class="field form-control" id="s" name="s" type="text"
-                                placeholder="<?php esc_attr_e( 'Search &hellip;', 'understrap' ); ?>"
-                                value="<?php the_search_query(); ?>">
-                            <span class="input-group-append">
-                                <input class="submit btn btn-primary" id="searchsubmit" name="submit" type="submit"
-                                    value="<?php esc_attr_e( 'Search', 'understrap' ); ?>">
-                            </span>
-                        </div>
-                    </form>
+                    
                     <?php if ( 'container' == $container ) : ?>
                 </div><!-- .container -->
                 <?php endif; ?>
@@ -712,3 +1055,28 @@ $container = get_theme_mod( 'understrap_container_type' );
             </nav><!-- .site-navigation -->
 
         </div><!-- #wrapper-navbar end -->
+        <div class="container ">
+            <div class="shadow-sm">
+                <form method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" role="searchstyle="margin-top: 2px">
+                    <label class="sr-only" for="s"><?php esc_html_e( 'Cari', 'understrap' ); ?></label>
+                    <div class="input-group">
+                        <input class="field form-control" id="s" name="s" type="text"
+                            placeholder="<?php esc_attr_e( 'Cari Film &hellip;', 'understrap' ); ?>"
+                            value="<?php the_search_query(); ?>">
+                        <span class="input-group-append">
+                            <input class="submit btn btn-warning" id="searchsubmit"  name="submit" type="submit"
+                                value="<?php esc_attr_e( 'Cari', 'understrap' ); ?>">
+                        </span>
+                    </div>
+                </form>    
+            </div>
+           
+        </div>
+        <?php if(get_option('country_list') == true){?>
+        <div class="mt-2">
+        <div id="site-genre">
+            <?php echo gm_navgenre(); ?>
+        </div>
+        <?php }?>
+            
+        </div>

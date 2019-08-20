@@ -32,9 +32,12 @@ if ( ! defined( 'ABSPATH' ) ) {
                         <div class="ttl">
                             <h2><?php the_title();?></h2>
                         </div>
-
                     </div>
+                    <?php if( get_post_meta($post->ID, 'gm_gposter', true)):?>
+                    <img src="<?= get_post_meta($post->ID, 'gm_gposter', true)?>">
+                    <?php else:?>
                     <img src="<?php the_post_thumbnail_url(); ?>">
+                    <?php endif?>
                 </div>
             </a>
         </article><!-- #post-## -->

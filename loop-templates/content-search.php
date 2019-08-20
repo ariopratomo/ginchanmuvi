@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 alt="<?php the_title();?>">
                 <div class="limit">
                     <div class="overlay">
-                        <?php 
+                         <?php 
 						
 						$qlt= get_post_meta($post->ID, 'gm_quality', true);
 						if(!empty($qlt) && $qlt != "-" ){

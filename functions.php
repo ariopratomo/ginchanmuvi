@@ -36,6 +36,7 @@ foreach ( $understrap_includes as $file ) {
 }
 
 // Custom Function
+include 'inc/admin.php';
 
 function the_breadcrumb() {
 	if (!is_home()) {
@@ -92,22 +93,12 @@ function example_cats_related_post() {
                     alt="<?php the_title(); ?>">
                     <div class="limit">
                         <div class="overlay">
-                            <?php 
-						
-						$qlt= get_post_meta($post->ID, 'gm_quality', true);
-						if(!empty($qlt) && $qlt != "-" ){
 
-							echo ' <span class="quality">'.$qlt.'</span>
-							';
-
-                    }
-
-                    ?>
                             <div class="ttl">
                                 <h2><?php the_title(); ?></h2>
                             </div>
                         </div>
-                        <img src="<?php the_post_thumbnail_url(); ?>" title="<?php the_title(); ?>"
+                        <img src="<?= get_post_meta($post->ID, 'gm_gposter', true)?>" title="<?php the_title(); ?>"
                             alt="<?php the_title(); ?>">
                     </div>
                 </a>
@@ -204,6 +195,7 @@ function gm_genre() {
 add_action( 'init', 'gm_genre', 0 );
 
 // Register Custom Year
+
 function gm_year() {
 
 	$labels = array(
@@ -232,11 +224,11 @@ function gm_year() {
 		'labels'                     => $labels,
 		'hierarchical'               => false,
 		'public'                     => true,
-		'show_ui'                    => true,
+		'show_ui'                    => false,
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
-        'show_tagcloud'              => true,
-        'rewrite'            => array( 'slug' => 'tahun', ),
+		'show_tagcloud'              => true,
+		'query_var' => true,
 	);
 	register_taxonomy( 'year', array( 'post' ), $args );
 
@@ -276,6 +268,13 @@ function info_muvi( $meta_boxes ) {
 				'size' => 40,
 			),
 			array(
+				'id' => $prefix . 'year',
+				'type' => 'text',
+				'name' => esc_html__( 'Year', 'ginchan-muvi' ),
+				'std' => '-',
+				'size' => 40,
+			),
+			array(
 				'id' => $prefix . 'score',
 				'type' => 'text',
 				'name' => esc_html__( 'Score', 'ginchan-muvi' ),
@@ -296,6 +295,13 @@ function info_muvi( $meta_boxes ) {
 				'std' => '-',
 				'size' => 20,
 			),
+			array(
+                'id' => $prefix . 'gposter',
+                'type' => 'text',
+				'name' => esc_html__( 'Poster', 'ginchan-muvi' ),
+				'std' => '',
+				'size' => 70,
+            ),
 		),
 	);
 
@@ -303,7 +309,84 @@ function info_muvi( $meta_boxes ) {
 }
 add_filter( 'rwmb_meta_boxes', 'info_muvi' );
 
-// Download Box Function
+// Stream by yuukithemes
+function streams_mode( $meta_boxes ) {
+$prefix = 'gm_';
+if(get_option('stream_mode') == true){
+	$meta_boxes[] = array(
+		'id' => 'gm_streams',
+		'title' => esc_html__( 'Stream Mode', 'ginchan-muvi' ),
+		'post_types' => array( 'post' ),
+		'context' => 'advanced',
+		'priority' => 'high',
+		'autosave' => true,
+		'fields' => array(
+			array(
+				'before'=>'<div style=" display: inline-block;border-right: 500px solid #2ecc71;margin: 15px;background: #f1c40f;color: #fff;font-size: 15px;font-weight: bold;"><span style="padding: 7px;">Server 1</span></div>',
+				'id' => $prefix . 'stream_server1',
+				'type' => 'url',
+				'name' => esc_html__( 'Server 1', 'ginchan-muvi' ),
+				'size' => 95,
+			),
+			array(
+				'id' => $prefix . 'name_server1',
+				'type' => 'text',
+				'std' => 'Server 1',
+				'name' => esc_html__( 'Name Server 1', 'ginchan-muvi' ),
+				'size' => 30,
+			),
+			array(
+				'before'=>'<div style=" display: inline-block;border-right: 500px solid #2ecc71;margin: 15px;background: #f1c40f;color: #fff;font-size: 15px;font-weight: bold;"><span style="padding: 7px;">Server 2</span></div>',
+				'id' => $prefix . 'stream_server2',
+				'type' => 'url',
+				'name' => esc_html__( 'Server 2', 'ginchan-muvi' ),
+				'size' => 95,
+			),
+			array(
+				'id' => $prefix . 'name_server2',
+				'type' => 'text',
+				'std' => 'Server 2',
+				'name' => esc_html__( 'Name Server 2', 'ginchan-muvi' ),
+				'size' => 30,
+			),
+			
+			array(
+				'before'=>'<div style=" display: inline-block;border-right: 500px solid #2ecc71;margin: 15px;background: #f1c40f;color: #fff;font-size: 15px;font-weight: bold;"><span style="padding: 7px;">Server 3</span></div>',
+				'id' => $prefix . 'stream_server3',
+				'type' => 'url',
+				'name' => esc_html__( 'Server 3', 'ginchan-muvi' ),
+				'size' => 95,
+			),
+			array(
+				'id' => $prefix . 'name_server3',
+				'type' => 'text',
+				'std' => 'Server 3',
+				'name' => esc_html__( 'Name Server 3', 'ginchan-muvi' ),
+				'size' => 30,
+			),
+			array(
+				'before'=>'<div style=" display: inline-block;border-right: 500px solid #2ecc71;margin: 15px;background: #f1c40f;color: #fff;font-size: 15px;font-weight: bold;"><span style="padding: 7px;">Server 4</span></div>',
+				'id' => $prefix . 'stream_server4',
+				'type' => 'url',
+				'name' => esc_html__( 'Server 4', 'ginchan-muvi' ),
+				'size' => 95,
+			),
+			array(
+				'id' => $prefix . 'name_server4',
+				'type' => 'text',
+				'std' => 'Server 4',
+				'name' => esc_html__( 'Name Server 4', 'ginchan-muvi' ),
+				'size' => 30,
+			),
+		),
+	);
+	
+	};
+	return $meta_boxes;
+}
+add_filter( 'rwmb_meta_boxes', 'streams_mode' );
+
+	// Download Box Function
 
 
 function dlbox_1080p( $meta_boxes ) {
@@ -706,6 +789,122 @@ function dlbox_360( $meta_boxes ) {
 }
 add_filter( 'rwmb_meta_boxes', 'dlbox_360' );
 
+// Api OMDB
+
+function meta_omdb_api() {
+    add_meta_box( 'meta_omdb_api', __( 'IMDb API', 'meta_omdb' ), 'meta_omdb_modal', 'post', 'advanced', 'high' );
+    
+}
+function meta_omdb_modal() {
+?>
+<div class="rwmb-meta-box">
+    <div class="rwmb-field rwmb-text-wrapper">
+        <div class="rwmb-label">
+            <label for="meta_omdb_api_input">IMDb ID</label>
+        </div>
+        <div class="rwmb-input ui-shortable">
+            <div class="rwmb-clone rwmb-text-clone">
+                <input size="30" type="text" id="meta_omdb_api_input" class="rwmb-text " name="meta_omdb_api_input"
+                    placeholder="input IMDb ID" />
+                <span class="spinner" id="spinner"></span>
+            </div>
+            <a class="button-primary" id="meta_omdb_api_button">Generate</a>
+        </div>
+    </div>
+</div>
+<?php
+}
+add_action( 'add_meta_boxes', 'meta_omdb_api' );
+function meta_omdb_enqueue() {
+  wp_enqueue_script( 'meta-mal', get_template_directory_uri() . '/js/api1.js', array(), '4', true );
+}
+add_action( 'admin_enqueue_scripts', 'meta_omdb_enqueue' );
 
 
+
+?>
+
+<!-- Tes related by custom taxonomy -->
+<?php 
+function get_related_posts( $taxonomy = '', $args = array() )
+{
+    /*
+     * Before we do anything and waste unnecessary time and resources, first check if we are on a single post page
+     * If not, bail early and return false
+     */
+    if ( !is_single() )
+        return false;
+
+    /*
+     * Check if we have a valid taxonomy and also if the taxonomy exists to avoid bugs further down.
+     * Return false if taxonomy is invalid or does not exist
+     */
+    if ( !$taxonomy ) 
+        return false;
+
+    $taxonomy = filter_var( $taxonomy, FILTER_SANITIZE_STRING );
+    if ( !taxonomy_exists( $taxonomy ) )
+        return false;
+
+    /*
+     * We have made it to here, so we should start getting our stuff togther. 
+     * Get the current post object to start of
+     */
+    $current_post = get_queried_object();
+
+    /*
+     * Get the post terms, just the ids
+     */
+    $terms = wp_get_post_terms( $current_post->ID, $taxonomy, array( 'fields' => 'ids') );
+
+    /*
+     * Lets only continue if we actually have post terms and if we don't have an WP_Error object. If not, return false
+     */
+    if ( !$terms || is_wp_error( $terms ) )
+        return false;
+
+    /*
+     * Set the default query arguments
+     */
+    $defaults = array(
+        'post_type' => $current_post->post_type,
+        'post__not_in' => array( $current_post->ID),
+        'tax_query' => array(
+            array(
+                'taxonomy' => $taxonomy,
+                'terms' => $terms,
+                'include_children' => false
+            ),
+        ),
+    );
+
+    /*
+     * Validate and merge the defaults with the user passed arguments
+     */
+    if ( is_array( $args ) ) {
+        $args = wp_parse_args( $args, $defaults );
+    } else {
+        $args = $defaults;
+    }
+
+    /*
+     * Now we can query our related posts and return them
+     */
+    $q = get_posts( $args );
+
+    return $q;
+}
+function gm_navgenre(){
+	$genre_tax = 'country';
+	$genre_terms = get_terms($genre_tax,'number=15');
+	echo '<ul class="gm-ul container">';
+		echo "<li class='genfirst'><b>Country</b></li>";
+	foreach ($genre_terms as $genre_term){
+		$gterm = $genre_term;
+		$gtax = $genre_tax;
+		echo '<li><a href="'.esc_attr(get_term_link($gterm, $gtax)).'" title="'.sprintf( __( "Lihat genre %s" ),$gterm->name).'">'.$gterm->name.'</a></li>';
+	}
+	echo '</ul>';
+}
+ 
 ?>

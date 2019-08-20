@@ -24,16 +24,28 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 
         <main class="site-main" id="main">
+        <table class="mb-2">
+                <tbody>
 
+                    <tr>
+                        <th style="text-align:center; padding: 1px; ">
+                            <?= get_option('ads_1'); ?>
+                        </th>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="ann"><?php echo get_option('config_infoweb'); ?></div>
             <?php if ( have_posts() ) : ?>
 
-            <div class="latest">
+            <div class="latest ">
                 <h1><?php
 						the_archive_title();
 						the_archive_description( '<div class="taxonomy-description">', '</div>' );
 						?>
                 </h1>
-                <div class="los">
+                <div class="los bg-white mt-2 p-2 rounded shadow-sm">
                     <?php /* Start the Loop */ ?>
                     <?php while ( have_posts() ) : the_post(); ?>
 
